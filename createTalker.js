@@ -18,7 +18,6 @@ function createNewTalker(req, res) {
             rate,
          },
       };
-      data.push(newTalker);
       res.status(201).json(newTalker);
    } catch (e) {
       return res.status(400).json({ message: e.message });

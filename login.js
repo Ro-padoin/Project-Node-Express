@@ -9,10 +9,10 @@ const messages = {
 
 function validateLoginData(email, password) {
     const ruleEmail = /\S+@\S+\.\S+/;
-    if (!email) throw Error (messages.email);
-    if (!ruleEmail.test(email)) throw Error (messages.formatoEmail);
-    if (!password) throw Error (messages.password);
-    if (password.length < 6) throw Error (messages.caracteresPassword);
+    if (!email) throw Error(messages.email);
+    if (!ruleEmail.test(email)) throw Error(messages.formatoEmail);
+    if (!password) throw Error(messages.password);
+    if (password.length < 6) throw Error(messages.caracteresPassword);
 }
 
 function login(req, res) {
@@ -23,7 +23,7 @@ function login(req, res) {
         res.set('token', token);
         res.status(200).json({ token });
     } catch (e) {
-        return res.status(400).json({ message: e.message })
+        return res.status(400).json({ message: e.message });
     }
 }
 
