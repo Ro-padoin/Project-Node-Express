@@ -7,20 +7,24 @@ const messages = {
     caracteresPassword: 'O "password" deve ter pelo menos 6 caracteres',
 };
 
-function validateLoginData(req, res, next) {
-    const { email, password } = req.body;
+function validateLoginData(email, password) {
     const ruleEmail = /\S+@\S+\.\S+/;
-    if (!email) return res.status(400).json({ message: messages.email });
-    if (!ruleEmail.test(email)) return res.status(400).json({ message: messages.formatoEmail });
-    if (!password) return res.status(400).json({ message: messages.password });
-    if (password.length < 6) return res.status(400).json({ message: messages.caracteresPassword });
-    next();
+    if (!email) throw Error (messages.email);
+    if (!ruleEmail.test(email)) throw Error (messages.formatoEmail);
+    if (!password) throw Error (messages.password);
+    if (password.length < 6) throw Error (messages.caracteresPassword);
 }
 
-function login(_req, res) {
-    const token = crypto.randomBytes(8).toString('hex');
-    res.set('token', token);
-    res.status(200).json({ token });
+function login(req, res) {
+    try {
+        const { email, password } = req.body;
+        validateLoginData(email, password);
+        const token = crypto.randomBytes(8).toString('hex');
+        res.set('token', token);
+        res.status(200).json({ token });
+    } catch (e) {
+        return res.status(400).json({ message: e.message })
+    }
 }
 
-module.exports = { login, validateLoginData };
+module.exports = login;
