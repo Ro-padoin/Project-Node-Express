@@ -7,6 +7,7 @@ const login = require('./login');
 const { validateToken, validateName, validateAge, validateDate,
   validadeRate, validateTalk } = require('./validateData');
 const editTalker = require('./editTalker');
+const deleteTalker = require('./deleteTalker');
 
 const app = express();
 app.use(bodyParser.json());
@@ -26,6 +27,7 @@ app.post('/talker', validateToken, validateName, validateAge,
   validateTalk, validateDate, validadeRate, createNewTalker);
 app.put('/talker/:id', validateToken, validateName, validateAge,
 validateTalk, validadeRate, validateDate, editTalker);
+app.delete('/talker/:id', validateToken, deleteTalker);
 
 app.listen(PORT, () => {
   console.log('Online');
