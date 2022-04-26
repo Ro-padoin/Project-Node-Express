@@ -7,6 +7,7 @@ const login = require('./login');
 const { validateToken, validateName, validateAge, validateDate,
   validadeRate, validateTalk } = require('./validateData');
 const editTalker = require('./editTalker');
+const getSearchTerm = require('./getSearchTerm');
 const deleteTalker = require('./deleteTalker');
 
 const app = express();
@@ -21,6 +22,7 @@ app.get('/', (_request, response) => {
 });
 
 app.get('/talker', getTalker);
+app.get('/talker/search', validateToken, getSearchTerm);
 app.get('/talker/:id', getTalkerId);
 app.post('/login', login);
 app.post('/talker', validateToken, validateName, validateAge,
