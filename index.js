@@ -5,6 +5,8 @@ const getTalker = require('./getTalker');
 const getTalkerId = require('./getTalkerId');
 const validateToken = require('./tokenMiddleware');
 const login = require('./login');
+const { validateName, validateAge, validateDate,
+  validadeRate, validateTalk } = require('./validateData');
 
 const app = express();
 app.use(bodyParser.json());
@@ -20,7 +22,8 @@ app.get('/', (_request, response) => {
 app.get('/talker', getTalker);
 app.get('/talker/:id', getTalkerId);
 app.post('/login', login);
-app.post('/talker', validateToken, createNewTalker);
+app.post('/talker', validateToken, validateName, validateAge,
+  validateTalk, validateDate, validadeRate, createNewTalker);
 
 app.listen(PORT, () => {
   console.log('Online');
