@@ -1,35 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const createNewTalker = require('./createTalker');
-const getTalker = require('./getTalker');
-const getTalkerId = require('./getTalkerId');
-const login = require('./login');
-const { validateToken, validateName, validateAge, validateDate,
-  validadeRate, validateTalk } = require('./validateData');
-const editTalker = require('./editTalker');
-const getSearchTerm = require('./getSearchTerm');
-const deleteTalker = require('./deleteTalker');
+const { PORT, HTTP_OK_STATUS } = require('./helpers/statusAndPath/constants');
+const talker = require('./helpers/routes/talker');
+const login = require('./helpers/routes/login');
 
 const app = express();
 app.use(bodyParser.json());
-
-const HTTP_OK_STATUS = 200;
-const PORT = '3000';
 
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
 
-app.get('/talker', getTalker);
-app.get('/talker/search', validateToken, getSearchTerm);
-app.get('/talker/:id', getTalkerId);
-app.post('/login', login);
-app.post('/talker', validateToken, validateName, validateAge,
-  validateTalk, validateDate, validadeRate, createNewTalker);
-app.put('/talker/:id', validateToken, validateName, validateAge,
-validateTalk, validadeRate, validateDate, editTalker);
-app.delete('/talker/:id', validateToken, deleteTalker);
+app.use(talker);
+app.use(login);
 
 app.listen(PORT, () => {
   console.log('Online');
