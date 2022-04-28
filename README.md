@@ -180,6 +180,7 @@ As regras de validação são:
     }
   }
   ```
+  <br/>
 
 ### Crie o endpoint PUT `/talker/:id`
 
@@ -189,6 +190,7 @@ As regras de validação são:
 
 - O endpoint terá que realizar todas as validações, referentes a token e campos de cadastro, contidas da rota `POST /talker`.
 
+<br/>
 
 ### Crie o endpoint DELETE `/talker/:id`
 
@@ -197,6 +199,8 @@ As regras de validação são:
 - O endpoint deve deletar uma pessoa palestrante com base no id da rota. Devendo retornar o `status 204`, sem conteúdo na resposta.
 
 - A requisição deve ter o token de autenticação nos headers, no campo `authorization` e realizar as validações referentes ao token contidas na rota `POST /talker`.
+
+<br/>
 
 ### Crie o endpoint GET `/talker/search?q=searchTerm`
 
