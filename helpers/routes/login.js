@@ -8,6 +8,6 @@ const createLoginAndToken = require('../functions/createLoginAndToken');
 
 login.use(bodyParser.json());
 
-login.post('/login', createLoginAndToken);
+login.post('/', createLoginAndToken);
 
 module.exports = login;

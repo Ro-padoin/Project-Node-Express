@@ -15,13 +15,13 @@ const { validateToken, validateName, validateAge, validateDate,
 
 talker.use(bodyParser.json());
 
-talker.get('/talker', getTalker);
-talker.get('/talker/search', validateToken, getSearchTerm);
-talker.get('/talker/:id', getTalkerId);
-talker.post('/talker', validateToken, validateName, validateAge,
+talker.get('/', getTalker);
+talker.get('/search', validateToken, getSearchTerm);
+talker.get('/:id', getTalkerId);
+talker.post('/', validateToken, validateName, validateAge,
     validateTalk, validateDate, validadeRate, createNewTalker);
-talker.put('/talker/:id', validateToken, validateName, validateAge,
+talker.put('/:id', validateToken, validateName, validateAge,
     validateTalk, validadeRate, validateDate, editTalker);
-talker.delete('/talker/:id', validateToken, deleteTalker);
+talker.delete('/:id', validateToken, deleteTalker);
 
 module.exports = talker;
