@@ -70,8 +70,6 @@ Observação: Node versão 16.
 
 ## Requisitos e critérios avaliados:
 
-<br/>
-
 ### Crie o endpoint POST `/login`
 
 O endpoint deverá receber no corpo da requisição os campos `email` e `password` e retornar um token aleatório de 16 caracteres. Este token será utilizado pelas requisições dos próximos requisitos do projeto.
